@@ -65,14 +65,18 @@ const zooAnimals = [
 
   function animalNames(array){
     const displayNames = [];
-     for(let i = 0; i <= array.length; i++){
-      array.forEach()
-        displayNames.push(array[i])
-      
-     }return displayNames
-  
+    // arrow function
+    array.forEach(array => displayNames.push(`name: ${array.animal_name}, scientific: ${array.scientific_name}`))
+    return displayNames
+    }
+    
+    //  array.forEach(function(array) {
+    //   displayNames.push(`name: ${array.animal_name}, scientific: ${array.scientific_name}`)
+    //  })
+    //   return displayNames
+    // }
 
-  }
+    console.log('request 1', animalNames(zooAnimals))
   
 
   /* 🦁🦁🦁 Request 2: .map() 🦁🦁🦁
@@ -85,10 +89,13 @@ const zooAnimals = [
   💡 NOTE: Do some research for other methods that can help help you
   */
 
-  function lowerCaseNames(/*Your Code Here*/){
-    /*Your Code Here*/
+  function lowerCaseNames(array){
+    const newArr = array.map((element) => {
+      return element.animal_name.toLowerCase()
+    });
+    return newArr
   }
-  
+  console.log('request 2', lowerCaseNames(zooAnimals))
   
   /* 🦁🦁🦁 Request 3: .filter() 🦁🦁🦁
   The zoo is concerned about animals with a lower population count. 
@@ -98,10 +105,13 @@ const zooAnimals = [
   3. Return this new array
   */
 
-  function lowPopulationAnimals(/*Your Code Here*/){
-    /*Your Code Here*/
+  function lowPopulationAnimals(array){
+     const newArr = array.filter((element) => {
+      return element.population < 5;
+    })
+    return newArr
   }
-  
+  console.log('request 3', lowPopulationAnimals(zooAnimals))
 
   /* 🦁🦁🦁 Request 4: .reduce() 🦁🦁🦁
   The zoo needs to know their total animal population across the United States. 
@@ -112,10 +122,13 @@ const zooAnimals = [
   💡 NOTE: Remember the reduce method takes two arguments: a callback (which itself takes two args - the accumulator and the item), and an initial value for the count. Check MDN/W3Schools for syntax!
   */
 
-  function USApop(/*Your Code Here*/){
-    /*Your Code Here*/
+  function USApop(array){
+    const newArr = array.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue.population;
+    }, 0);
+    return newArr
   }
-  
+  console.log('request 4', USApop(zooAnimals))
   
   // 🦁🦁🦁 Callbacks 🦁🦁🦁  
   /* 🦁🦁🦁 Step 1: Create a higher-order function 🦁🦁🦁
@@ -126,8 +139,9 @@ const zooAnimals = [
     💡 NOTE: The tests for 'consume' will pass if it is created correctly and also after you correctly complete the functions 'add' and 'greeting' below in Step 2.
   */
 
-  function consume(/*Your Code Here */){
-    /*Your Code Here */
+  function consume(a, b, cb){
+    cb(a, b)
+    return cb
   }
  
   
@@ -138,8 +152,9 @@ const zooAnimals = [
  2. Return the sum of those numbers
  */
 
-function add(/*Your Code Here */){
-    /*Your Code Here*/
+function add(num1, num2){
+    const sum = num1 + num2
+    return sum    
   }
 
 
@@ -148,9 +163,10 @@ function add(/*Your Code Here */){
 2. Return the product of those numbers
 */
 
-function multiply(/*Your Code Here */){
-   /*Your Code Here */
-  }
+function multiply(num1, num2){
+   const sum = num1 * num2
+   return sum
+}
 
 
  /* Use greeting to do the following:
@@ -159,8 +175,8 @@ function multiply(/*Your Code Here */){
 💡 NOTE: The string returned must match the format above or the test will not pass!
 */
 
-function greeting(/*Your Code Here */){
-   return /*Your Code Here */
+function greeting(first_name, last_name){
+  return `Hello ${first_name} ${last_name}, nice to meet you!`
   }
   
   
@@ -185,8 +201,10 @@ function greeting(/*Your Code Here */){
 - Instances of CuboidMaker should initialize `length`, `width` and `height` properties
 */
 
-function CuboidMaker(/*Your Code Here */){
-  /*Your Code Here */
+function CuboidMaker(props){
+  this.length = props.length;
+  this.width = props.width;
+  this.height = props.height;
 }
 
 
@@ -194,7 +212,10 @@ function CuboidMaker(/*Your Code Here */){
   Create a method called volume using CuboidMaker's prototype that returns the volume of a given cuboid's length, width, and height
   💡 NOTE: Formula for cuboid volume: length * width * height   
 */
-
+CuboidMaker.prototype.volume = function(){
+  const volume = this.length * this.width * this.height
+  return volume
+}
 
 
 
@@ -202,14 +223,22 @@ function CuboidMaker(/*Your Code Here */){
   Create another method called surfaceArea using CuboidMaker's prototype that returns the surface area of a given cuboid's length, width, and height. 
   💡 NOTE: Formula for cuboid surface area: 2 * (length * width + length * height + width * height)  
 */
-
+CuboidMaker.prototype.surfaceArea = function () {
+  const surfaceArea = 2 * (this.length * this.width + this.length * this.height + this.width * this.height)
+  return surfaceArea
+}
 
 
 
 /* 🐴🐴🐴 Step 4: Create a new object that uses CuboidMaker (not auto graded)🐴🐴🐴
   Create an object called cuboid that uses the new keyword to use our CuboidMaker constructor
   Add properties and values of length: 4, width: 5, and height: 5 to cuboid. */
-
+CuboidMaker.prototype.cuboid = function () {
+ const cuboid = this.length = 4;
+                this.width = 5;
+                this.height = 5
+    return cuboid
+              }
 
 
 
@@ -224,10 +253,38 @@ function CuboidMaker(/*Your Code Here */){
 //Using CuboidMakerTwo, take your prototypes from above and refactor into class syntax. Then, create an object called cuboidTwo that uses the new keyword to use our CuboidMakerTwo class.
  
 class CuboidMakerTwo{
-
+  constructor(props){
+    this.length = props.length;
+    this.width = props.width;
+    this.height = props.height
+  }
 }
+  class volume extends CuboidMakerTwo{
+    constructor(props) {
+      super(props);
+      const volume = this.length * this.width * this.height
+  return volume
+}
+    
+  }
 
+  class surfaceArea extends CuboidMakerTwo {
+    constructor(props) {
+      super(props)
+      const surfaceArea = 2 * (this.length * this.width + this.length * this.height + this.width * this.height)
+      return surfaceArea
+    }
+  }
 
+  class cuboid2 extends CuboidMakerTwo {
+    constructor(props) {
+      super(props)
+      const cuboid2 = this.length = 4;
+                this.width = 5;
+                this.height = 5
+    return cuboid2
+    }
+  }
 
 
 //🦄🦄🦄 Test your volume and surfaceArea methods by uncommenting the logs below: 🦄🦄🦄
