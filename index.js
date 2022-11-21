@@ -140,8 +140,8 @@ const zooAnimals = [
   */
 
   function consume(a, b, cb){
-    cb(a, b)
-    return cb
+    return cb(a, b)
+
   }
  
   
@@ -153,8 +153,7 @@ const zooAnimals = [
  */
 
 function add(num1, num2){
-    const sum = num1 + num2
-    return sum    
+    return num1 + num2  
   }
 
 
@@ -164,8 +163,8 @@ function add(num1, num2){
 */
 
 function multiply(num1, num2){
-   const sum = num1 * num2
-   return sum
+   return  num1 * num2
+   
 }
 
 
@@ -182,9 +181,9 @@ function greeting(first_name, last_name){
   
 // 🦁🦁🦁 Step 3: Check your work by un-commenting the following calls to consume(): 🦁🦁🦁 
 // ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️
-// console.log(consume(2, 2, add)); // 4
-// console.log(consume(10, 16, multiply)); // 160
-// console.log(consume("Mary", "Poppins", greeting)); // Hello Mary Poppins, nice to meet you!
+console.log(consume(2, 2, add)); // 4
+console.log(consume(10, 16, multiply)); // 160
+console.log(consume("Mary", "Poppins", greeting)); // Hello Mary Poppins, nice to meet you!
 
 
 
@@ -213,8 +212,8 @@ function CuboidMaker(props){
   💡 NOTE: Formula for cuboid volume: length * width * height   
 */
 CuboidMaker.prototype.volume = function(){
-  const volume = this.length * this.width * this.height
-  return volume
+  return this.length * this.width * this.height
+ 
 }
 
 
@@ -224,8 +223,8 @@ CuboidMaker.prototype.volume = function(){
   💡 NOTE: Formula for cuboid surface area: 2 * (length * width + length * height + width * height)  
 */
 CuboidMaker.prototype.surfaceArea = function () {
-  const surfaceArea = 2 * (this.length * this.width + this.length * this.height + this.width * this.height)
-  return surfaceArea
+  return 2 * (this.length * this.width + this.length * this.height + this.width * this.height)
+ 
 }
 
 
@@ -233,13 +232,9 @@ CuboidMaker.prototype.surfaceArea = function () {
 /* 🐴🐴🐴 Step 4: Create a new object that uses CuboidMaker (not auto graded)🐴🐴🐴
   Create an object called cuboid that uses the new keyword to use our CuboidMaker constructor
   Add properties and values of length: 4, width: 5, and height: 5 to cuboid. */
-CuboidMaker.prototype.cuboid = function () {
- const cuboid = this.length = 4;
-                this.width = 5;
-                this.height = 5
-    return cuboid
-              }
 
+  const cuboid = new CuboidMaker({ length: 4, width: 5, height: 5});
+ 
 
 
 
@@ -256,40 +251,21 @@ class CuboidMakerTwo{
   constructor(props){
     this.length = props.length;
     this.width = props.width;
-    this.height = props.height
+    this.height = props.height;
   }
-}
-  class volume extends CuboidMakerTwo{
-    constructor(props) {
-      super(props);
-      const volume = this.length * this.width * this.height
-  return volume
-}
-    
+  volume() {
+    return this.length * this.width * this.height
+  }
+  surfaceArea () {
+    return 2 * (this.length * this.width + this.length * this.height + this.width * this.height)
   }
 
-  class surfaceArea extends CuboidMakerTwo {
-    constructor(props) {
-      super(props)
-      const surfaceArea = 2 * (this.length * this.width + this.length * this.height + this.width * this.height)
-      return surfaceArea
-    }
   }
-
-  class cuboid2 extends CuboidMakerTwo {
-    constructor(props) {
-      super(props)
-      const cuboid2 = this.length = 4;
-                this.width = 5;
-                this.height = 5
-    return cuboid2
-    }
-  }
-
+  const cuboidTwo = new CuboidMakerTwo ({length: 4, width: 5, height: 5});
 
 //🦄🦄🦄 Test your volume and surfaceArea methods by uncommenting the logs below: 🦄🦄🦄
-// console.log(cuboidTwo.volume()); // 100
-// console.log(cuboidTwo.surfaceArea()); // 130
+console.log(cuboidTwo.volume()); // 100
+console.log(cuboidTwo.surfaceArea()); // 130
 
 
 
